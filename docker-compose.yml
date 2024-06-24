@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   elasticsearch:
-    image: elasticsearch:6.5.0
+    image: elasticsearch:6.5.4
     container_name: elasticsearch
     hostname: elasticsearch
     ports:
@@ -18,7 +18,7 @@ services:
       - "host.docker.internal:host-gateway"
 
   kibana:
-    image: kibana:6.5.0
+    image: kibana:6.5.4
     container_name: kibana
     ports:
       - "5601:5601"
