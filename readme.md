@@ -64,3 +64,19 @@ function normalizeSpawnArguments(file, args, options) {
 Example of a command that can be configured through environment variables:
 
 ![alt text](ls-example.png)
+
+About `process.exit()`:
+
+The process.exit() method instructs Node.js to terminate the process synchronously with an exit status of code. If code is omitted, exit uses either the 'success' code 0 or the value of process.exitCode if it has been set. Node.js will not terminate until all the 'exit' event listeners are called.
+
+To exit with a 'failure' code:
+
+```js
+process.exit(1);
+```
+
+The shell that executed Node.js should see the exit code as 1.
+
+Calling process.exit() will force the process to exit as quickly as possible even if there are still asynchronous operations pending that have not yet completed fully, including I/O operations to process.stdout and process.stderr.
+
+In most situations, it is not actually necessary to call process.exit() explicitly. The Node.js process will exit on its own if there is no additional work pending in the event loop. The process.exitCode property can be set to tell the process which exit code to use when the process exits gracefully.

@@ -8,4 +8,3 @@ function spawn() {
         stdio: "inherit",
     });
 }
-spawn();
