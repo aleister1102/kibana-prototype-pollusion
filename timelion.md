@@ -50,7 +50,7 @@ And it looks like this in `Timelion.fn`:
 
 ![alt text](images/image-12.png)
 
-After pro-process sheet, the chain list is:
+After pre-process sheet, the chain list is:
 
 ![alt text](images/image-14.png)
 
@@ -65,17 +65,17 @@ The function definition is get by the name again:
 
 ![alt text](images/image-15.png)
 
-This time, `resolveArguments` receive `args` as an array and it will call the `resolveArguments` recursively for resolving each arguments. But, we have only one argument with index `0`. And that argument is an object with `type ==  chain`.
+This time, `resolveArguments` receive `args` as an array and it will call the `resolveArguments` recursively for resolving each argument. But, we have only one argument with index `0`. And that argument is an object with `type ==  chain`.
 
 So, in the switch case, it will call the `invokeChain` function and pass the chain object into it:
 
 ![alt text](images/image-16.png)
 
-Inside the invoke chain, it will `shift` the `chain` array. The `shift` function will return the removed element so `link` will be `es` function:
+Inside the invoke chain, it will `shift` the `chain` array. The `shift` function will return the removed element so `link` will be `es` object:
 
 ![alt text](images/image-17.png)
 
-Because the type of `es` is not `'chain'` and `!result` is truthy, the code calls the `invoke` function with `'first'` as `fnName` the `es` object as `args`:
+Because the type of `es` is not `'chain'` (it is `'function'`) and `!result` is truthy, the code calls the `invoke` function with `'first'` as `fnName` the `es` object as `args`:
 
 This time, the procedure is the same as above so skip to the call of `invokeChain` with `link` is `props` object:
 
