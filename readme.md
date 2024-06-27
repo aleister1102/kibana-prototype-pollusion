@@ -4,7 +4,7 @@
 
 CVSS:
 
-![cvss](cvss.png)
+![cvss](images/cvss.png)
 
 Blog: https://research.securitum.com/prototype-pollution-rce-kibana-cve-2019-7609/
 
