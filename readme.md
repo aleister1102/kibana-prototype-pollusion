@@ -22,11 +22,9 @@ Using:
 
 ## Analysis
 
-`NODE_OPTIONS`: https://nodejs.org/api/cli.html#node_optionsoptions
+When open a canvas, Kibana will call `child_process.spawn()` function.
 
-When open a canvas, Kibana will call `child_process.spawn` function.
-
-Where `child_process.spawn` is a function used for [spawning a child process](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options). Its code:
+Where `child_process.spawn()` is a function used for [spawning a child process](https://nodejs.org/api/child_process.html#child_processspawncommand-args-options). Its code:
 
 ```js
 // src: https://github.com/nodejs/node/blob/7e5bf80fd1a06655564ea88f5d7867b3f4fc7da0/lib/child_process.js#L542
@@ -41,7 +39,7 @@ function spawn(file, args, options) {
 }
 ```
 
-As we can see, the function `child_process.spawn` will call `normalizeSpawnArguments` function, its code has this snippet:
+As we can see, the function `child_process.spawn()` will call `normalizeSpawnArguments()` function, its code has this snippet:
 
 ```js
 // src: https://github.com/nodejs/node/blob/7e5bf80fd1a06655564ea88f5d7867b3f4fc7da0/lib/child_process.js#L404
@@ -60,23 +58,3 @@ function normalizeSpawnArguments(file, args, options) {
   // ...
 }
 ```
-
-Example of a command that can be configured through environment variables:
-
-![alt text](ls-example.png)
-
-About `process.exit()`:
-
-The process.exit() method instructs Node.js to terminate the process synchronously with an exit status of code. If code is omitted, exit uses either the 'success' code 0 or the value of process.exitCode if it has been set. Node.js will not terminate until all the 'exit' event listeners are called.
-
-To exit with a 'failure' code:
-
-```js
-process.exit(1);
-```
-
-The shell that executed Node.js should see the exit code as 1.
-
-Calling process.exit() will force the process to exit as quickly as possible even if there are still asynchronous operations pending that have not yet completed fully, including I/O operations to process.stdout and process.stderr.
-
-In most situations, it is not actually necessary to call process.exit() explicitly. The Node.js process will exit on its own if there is no additional work pending in the event loop. The process.exitCode property can be set to tell the process which exit code to use when the process exits gracefully.
